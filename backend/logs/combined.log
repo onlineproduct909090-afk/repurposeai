@@ -1,0 +1,22 @@
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-06-26T18:16:33.253Z"}
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-06-26T20:25:52.590Z"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-06-26T20:28:58.273Z"}
+{"chars":2089,"level":"info","message":"Transcript fetched","segments":61,"timestamp":"2026-06-26T20:29:00.029Z","videoId":"dQw4w9WgXcQ"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-06-26T20:29:25.948Z"}
+{"chars":2089,"level":"info","message":"Transcript fetched","segments":61,"timestamp":"2026-06-26T20:29:26.510Z","videoId":"dQw4w9WgXcQ"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-06-26T20:37:15.436Z"}
+{"chars":745,"level":"info","message":"Transcript fetched","segments":34,"timestamp":"2026-06-26T20:37:15.910Z","videoId":"wSHEok--OiM"}
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-07-02T17:45:10.024Z"}
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-07-02T18:47:16.938Z"}
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-07-02T19:49:46.047Z"}
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-07-03T18:32:26.220Z"}
+{"level":"info","message":"Backend running on http://localhost:5000","timestamp":"2026-07-05T03:23:02.081Z"}
+{"level":"info","message":"GET /","timestamp":"2026-07-05T03:23:06.139Z"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-07-05T03:48:22.665Z"}
+{"chars":1438,"level":"info","message":"Transcript fetched","segments":73,"timestamp":"2026-07-05T03:48:23.743Z","videoId":"TViPyKt-5Yo"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-07-05T03:48:28.306Z"}
+{"chars":1438,"level":"info","message":"Transcript fetched","segments":73,"timestamp":"2026-07-05T03:48:28.890Z","videoId":"TViPyKt-5Yo"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-07-05T03:49:49.525Z"}
+{"chars":2089,"level":"info","message":"Transcript fetched","segments":61,"timestamp":"2026-07-05T03:49:51.729Z","videoId":"dQw4w9WgXcQ"}
+{"level":"info","message":"POST /api/extract","timestamp":"2026-07-05T03:51:21.916Z"}
+{"chars":2089,"level":"info","message":"Transcript fetched","segments":61,"timestamp":"2026-07-05T03:51:22.693Z","videoId":"dQw4w9WgXcQ"}

@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 96%;
+    --card: 240 8% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 240 8% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 30 95% 62%;
+    --primary-foreground: 240 10% 6%;
+    --secondary: 240 6% 12%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 240 6% 14%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 30 95% 62%;
+    --accent-foreground: 240 10% 6%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 16%;
+    --input: 240 6% 16%;
+    --ring: 30 95% 62%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+code, pre {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.font-display {
+  font-family: "Bricolage Grotesque", serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Premium Effects ---------- */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.glow-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ---------- Shimmer Text Animation ---------- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.4) 100%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ---------- Fade Up Animation ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
