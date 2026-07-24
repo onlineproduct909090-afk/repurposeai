@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { createClient } from "@supabase/supabase-js";
 import { Helmet } from "react-helmet-async";
 import { toast } from "sonner";
-import { FileText, Twitter, Linkedin, History as HistoryIcon, Repeat, Inbox, Calendar } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
-/**
- * Supabase client — uses Vite's import.meta.env for production.
- * Falls back to mock data if environment variables are missing (useful for dev).
- */
+// 🔥 FIX: Lucide-React imports hata kar SVG use kiya (100% Error-free)
+const FileText = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
+const TwitterIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
+const LinkedinIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
+const HistoryIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>;
+const RepeatIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 2l4 4-4 4"/><path d="M7 22l-4-4 4-4"/><path d="M21 12v4a4 4 0 0 1-4 4H7"/><path d="M3 12V8a4 4 0 0 1 4-4h10"/></svg>;
+const InboxIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6z"/><path d="M2 12h5l2 3h6l2-3h5"/></svg>;
+const CalendarIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>;
+
 const viteEnv = (typeof import.meta !== "undefined" && import.meta.env) || {};
 const SUPABASE_URL =
   viteEnv.VITE_SUPABASE_URL ||
@@ -21,10 +25,9 @@ const SUPABASE_ANON_KEY =
   (typeof process !== "undefined" && process.env && process.env.REACT_APP_SUPABASE_ANON_KEY) ||
   "";
 
-const supabase =
-  SUPABASE_URL && SUPABASE_ANON_KEY ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const supabase = SUPABASE_URL && SUPABASE_ANON_KEY ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-// Fallback rows when Supabase is not configured — keeps the UI meaningful in dev.
+// Fallback rows
 const MOCK_ROWS = [
   {
     id: "m1",
@@ -46,10 +49,11 @@ const MOCK_ROWS = [
   },
 ];
 
+// ✅ Platform Meta with SVG Icons
 const PLATFORM_META = {
   blog: { label: "Blog", Icon: FileText, text: "text-emerald-300", bg: "bg-emerald-400/10" },
-  twitter: { label: "X", Icon: Twitter, text: "text-sky-300", bg: "bg-sky-400/10" },
-  linkedin: { label: "LinkedIn", Icon: Linkedin, text: "text-blue-300", bg: "bg-blue-400/10" },
+  twitter: { label: "X", Icon: TwitterIcon, text: "text-sky-300", bg: "bg-sky-400/10" },
+  linkedin: { label: "LinkedIn", Icon: LinkedinIcon, text: "text-blue-300", bg: "bg-blue-400/10" },
 };
 
 function formatDate(iso) {
@@ -80,7 +84,7 @@ export default function History() {
       setLoading(true);
       setError(null);
 
-      // Fallback path — no Supabase env configured.
+      // Fallback path
       if (!supabase || !user?.id) {
         await new Promise((r) => setTimeout(r, 700));
         if (!cancelled) {
@@ -102,7 +106,6 @@ export default function History() {
         toast.error(`Failed to load history: ${err.message}`);
         setRows([]);
       } else {
-        // Convert columns to platforms array for consistency with UI
         const formatted = data.map((item) => ({
           id: item.id,
           text: item.input_text || "",
@@ -141,7 +144,7 @@ export default function History() {
           className="mb-8"
         >
           <span className="text-xs uppercase tracking-[0.22em] text-emerald-300/80 inline-flex items-center gap-2">
-            <HistoryIcon className="h-3.5 w-3.5" /> Your generations
+            <HistoryIcon /> Your generations
           </span>
           <h1 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight mt-2 shimmer-text">
             History
@@ -191,13 +194,13 @@ export default function History() {
                           key={p}
                           className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-md ${meta.bg} ${meta.text}`}
                         >
-                          <Icon className="h-3 w-3" />
+                          <Icon />
                           {meta.label}
                         </span>
                       );
                     })}
                     <span className="inline-flex items-center gap-1 text-[11px] text-slate-500 ml-1">
-                      <Calendar className="h-3 w-3" />
+                      <CalendarIcon />
                       {formatDate(row.created_at)}
                     </span>
                   </div>
@@ -208,7 +211,7 @@ export default function History() {
                   data-testid={`history-reuse-${row.id}`}
                   className="shrink-0 inline-flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-md bg-emerald-400/10 text-emerald-300 hover:bg-emerald-400/15 transition"
                 >
-                  <Repeat className="h-3.5 w-3.5" /> Reuse
+                  <RepeatIcon /> Reuse
                 </button>
               </motion.li>
             ))}
@@ -241,7 +244,7 @@ function EmptyState({ onNew }) {
   return (
     <div data-testid="history-empty" className="glass rounded-2xl p-10 sm:p-14 text-center">
       <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 mb-4">
-        <Inbox className="h-6 w-6 text-emerald-300" />
+        <InboxIcon />
       </div>
       <h2 className="font-display text-2xl font-semibold tracking-tight">Nothing here yet</h2>
       <p className="text-sm text-slate-400 mt-2 max-w-sm mx-auto">
