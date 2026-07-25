@@ -15,4 +15,4 @@ const ArrowUpRightIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16
 
 const TEMPLATES = [
   // ... (TEMPLATES array same rahega, main 'Next' click karne par waapis de dunga)
-];
+];           export default Templates;
