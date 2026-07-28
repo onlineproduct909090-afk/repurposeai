@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound";       // ✅ New
 import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import ContentCreator from "./pages/ContentCreator";
-import Templates from "./pages/Templates";     // ✅ New
+import Templates from "./pages/TemplatesFix";
 import History from "./pages/History";         // ✅ New
 import Subscription from "./pages/Subscription";
 import Settings from "./pages/Settings";
