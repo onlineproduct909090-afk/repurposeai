@@ -48,6 +48,7 @@ const TONE_OPTIONS = [
 ];
 
 export default function ContentCreator() {
+  const { user } = useAuth(); // ✅ Added for future use
   const [url, setUrl] = useState("");
   const [transcript, setTranscript] = useState("");
   const [videoId, setVideoId] = useState("");
@@ -85,7 +86,7 @@ export default function ContentCreator() {
     }, 1000);
   };
 
-  // ✅ REAL AI Generation via Vercel API
+  // ✅ REAL AI Generation via Vercel API (with Robust Error Handling)
   const handleGenerate = async () => {
     if (!transcript || transcript.length < 40)
       return toast.error("Please analyze the text first.");
@@ -111,9 +112,21 @@ export default function ContentCreator() {
         }),
       });
 
-      const data = await response.json();
-      
-      if (response.ok && data.results) {
+      // ✅ Check if response is OK, otherwise throw with details
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || `Server error: ${response.status}`);
+      }
+
+      // ✅ Safely parse JSON
+      let data;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        throw new Error("Invalid JSON response from server. Please check backend.");
+      }
+
+      if (data.results) {
         setResults(data.results);
         setProgress(100);
         toast.success("Content generated successfully!");
@@ -121,7 +134,8 @@ export default function ContentCreator() {
         throw new Error(data.error || "Generation failed");
       }
     } catch (err) {
-      toast.error(err.message);
+      // ✅ Show user-friendly error
+      toast.error(err.message || "Something went wrong. Please try again.");
       setProgress(0);
     } finally {
       clearInterval(tick);
